@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter,Routes,Route} from "react-router-dom";
+import TodoList from './components/TodoList'
+import Login from './components/Login';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'font-awesome/css/font-awesome.min.css'
 import './App.css';
+import { createBrowserHistory } from 'history';
+
+export const history = createBrowserHistory();
 
 function App() {
+  
   return (
+    <BrowserRouter history={history}>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+    <Route path="/home" element={<TodoList/>}></Route>
+    <Route path="/login" element={<Login props={history} />}></Route>
+    </Routes>
+
+  </div>
+  </BrowserRouter>
   );
 }
 
